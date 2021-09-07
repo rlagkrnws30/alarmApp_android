@@ -1,0 +1,59 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+}
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.3"
+
+    defaultConfig {
+        applicationId "com.example.vaccinestatuscheck"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    buildFeatures{
+        viewBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation 'com.google.code.gson:gson:2.8.8'
+
+    /*카카오 SDK 모듈 설정하기*/
+    implementation "com.kakao.sdk:usermgmt:1.27.0"
+    implementation "com.kakao.sdk:v2-user:2.6.0" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-talk:2.6.0" // 친구, 메시지(카카오톡)
+    implementation "com.kakao.sdk:v2-story:2.6.0" // 카카오스토리
+    implementation "com.kakao.sdk:v2-link:2.6.0" // 메시지(카카오링크)
+    implementation "com.kakao.sdk:v2-navi:2.6.0" // 카카오내비
+
+    /*카카오 프로필 이미지를 보여주깅 위한 모듈*/
+    implementation 'com.github.bumptech.glide:glide:4.12.0'
+
+}
