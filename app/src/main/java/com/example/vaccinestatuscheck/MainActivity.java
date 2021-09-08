@@ -103,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(View v, int position) {
                 int id = mainAdapter.items.get(position).alarmId;
-                Intent intent1 = new Intent(getApplicationContext(), MakeAlarmActivity.class);
-                intent1.putExtra("수정", 1);
-                intent1.putExtra("alarmId", id);
-                intent1.putExtra("position", position);
-                startActivityForResult(intent1,105);
+//                Intent intent1 = new Intent(getApplicationContext(), MakeAlarmActivity.class);
+//                intent1.putExtra("수정", 1);
+//                intent1.putExtra("alarmId", id);
+//                intent1.putExtra("position", position);
+//                startActivityForResult(intent1,105);
             }
         });
 
