@@ -116,7 +116,8 @@ public class MainActivity extends AppCompatActivity {
 //            public void onClick(View v) {
 //                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
 //                params.setMargins(100, 0, 0, 0);
-//                recyclerView.setLayoutParams(params);
+//                recyclerView.setLayoutPara
+//                params);
 //            }
 //        });
     }
