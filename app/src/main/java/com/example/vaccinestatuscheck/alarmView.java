@@ -6,12 +6,15 @@ import android.widget.Switch;
 import com.kakao.sdk.template.model.Button;
 
 public class alarmView {
+    String dayNight;
     String alarmTime;
     String helperName;
     String helperImageId;
     int alarmId;
     Button removeButton;
     Switch aSwitch;
+    String message;
+    String friendId;
 
     public String getHelperImageId() {
         return helperImageId;
@@ -22,11 +25,14 @@ public class alarmView {
     }
 
     //생성자 추가
-    public alarmView(String alarmTime, String helperName, int alarmId, String imageId) {
+    public alarmView(String dayNight, String alarmTime, String helperName, int alarmId, String imageId, String message, String friendId) {
+        this.dayNight = dayNight;
         this.alarmTime = alarmTime;
         this.helperName = helperName;
         this.alarmId = alarmId;
         this.helperImageId = imageId;
+        this.message = message;
+        this.friendId = friendId;
     }
 
     public String getAlarmTime() {
@@ -45,4 +51,11 @@ public class alarmView {
         this.helperName = helperName;
     }
 
+    public String getDayNight() {
+        return dayNight;
+    }
+
+    public void setDayNight(String dayNight) {
+        this.dayNight = dayNight;
+    }
 }

@@ -24,8 +24,6 @@ import java.util.ArrayList;
 
 public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.ViewHolder> {
 
-    Switch aSwitch;
-
     ArrayList<alarmView> items = new ArrayList<alarmView>();
 
     public alarmViewAdaptor(ArrayList<alarmView> items) {
@@ -69,6 +67,7 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
                 //편집 activity로 이동
                 int position = holder.getAdapterPosition();
                 mListner.onItemClick(v, position);
+
 //                remove(holder.getAdapterPosition());
             }
         });
@@ -86,6 +85,10 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
                 PendingIntent alarmCancle = PendingIntent.getBroadcast(context, item.alarmId, receiver, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(alarmCancle);
                 remove(holder.getAdapterPosition());
+                Log.d("itemSize", String.valueOf(getItemCount()));
+                if(getItemCount() == 0){
+                    mListner2.onItemClick(v, position);
+                }
             }
         }
 //        {
@@ -142,10 +145,19 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
         void onItemClick(View v, int position);
     }
 
+    public interface OnItemClickListenr2{
+        void onItemClick(View v, int position);
+    }
+
     public OnItemClickListenr mListner = null;
+    public OnItemClickListenr2 mListner2 = null;
 
     public void setOnItemClickListener(OnItemClickListenr listener) {
         this.mListner = listener ;
+    }
+
+    public void setOnItemClickListener(OnItemClickListenr2 listener) {
+        this.mListner2 = listener ;
     }
 
     @Override
@@ -164,8 +176,8 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
         }
     }
 
-
     static class ViewHolder extends RecyclerView.ViewHolder{
+        TextView dayNight;
         TextView alarmTime;
         TextView helperName;
         Button remove;
@@ -173,7 +185,7 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
         //생성자
         public ViewHolder(View itemView){
             super(itemView);
-
+            dayNight = itemView.findViewById(R.id.alarmTimeD);
             alarmTime = itemView.findViewById(R.id.alarmTime);
             helperName = itemView.findViewById(R.id.helperName);
             remove = itemView.findViewById(R.id.alarmRemove);
@@ -181,6 +193,7 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
         }
 
         public void setItem(alarmView item){
+            dayNight.setText(item.getDayNight());
             alarmTime.setText(item.getAlarmTime());
             helperName.setText(item.getHelperName());
             Glide.with(itemView).load(item.getHelperImageId()).into(helperImage);

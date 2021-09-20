@@ -2,13 +2,11 @@ package com.example.vaccinestatuscheck;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.KeyguardManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,8 +44,9 @@ public class AlarmFunctionActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 alarmManager = (AlarmManager)getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-
                 Intent intent = new Intent(getApplicationContext(), alarmReceiver.class);
+//                intent.putExtra("중지", 1);
+//                sendBroadcast(intent);
                 Intent intent1 = new Intent(getApplicationContext(), alarmService.class);
                 PendingIntent alarmCancle = PendingIntent.getBroadcast(getApplicationContext(), alarmId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
                 alarmManager.cancel(alarmCancle);

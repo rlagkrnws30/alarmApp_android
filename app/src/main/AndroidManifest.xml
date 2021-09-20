@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.vaccinestatuscheck">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
@@ -17,9 +18,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.VaccineStatusCheck"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".MessagePushActivity"></activity>
+        <activity android:name=".FixAlarmAcitivity"></activity>
         <activity android:name=".FriendAddActitvity" />
         <activity
             android:name=".AlarmFunctionActivity"
@@ -53,12 +54,12 @@
 
         <service
             android:name=".alarmService"
-            android:enabled="true"/>
+            android:enabled="true" />
 
         <receiver
-            android:name=".alarmReceiverKakao"
+            android:name=".alarmReceiver"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
     </application>
 
 </manifest>

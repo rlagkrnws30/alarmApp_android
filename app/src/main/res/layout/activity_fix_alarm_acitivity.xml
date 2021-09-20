@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:soundEffectsEnabled="false"
-    tools:context=".MakeAlarmActivity"
+    tools:context=".FixAlarmAcitivity"
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
     <androidx.constraintlayout.widget.Guideline
@@ -34,7 +34,7 @@
             android:onClick="cancleAlarm"
             android:text="취소"
             android:textColor="#3F51B5"
-            android:textSize="20sp" />
+            android:textSize="20sp"/>
 
         <View
             android:layout_width="0dp"
@@ -47,11 +47,10 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="저장"
+            android:text="수정"
+            android:onClick="fixAlarm"
             android:textColor="#3F51B5"
-            android:textSize="20sp"
-            android:backgroundTint="@color/com_kakao_cancel_button_background"
-            android:onClick="addAlarm"/>
+            android:textSize="20sp"/>
     </LinearLayout>
 
     <TextView
@@ -61,46 +60,50 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="24dp"
-        android:text="헬퍼 체크 시간"
+        android:text="상태 체크 시간"
         android:textAllCaps="false"
         android:textColor="#0C0C0C"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <TimePicker
         android:id="@+id/timePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="28dp"
         android:foregroundGravity="center"
         android:timePickerMode="spinner" />
 
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0.3dp"-->
+<!--        android:background="#121111"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_margin="16dp"></LinearLayout>-->
 
-    <Button
-        android:id="@+id/friend_add"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="카카오 헬퍼 불러오기"
-        android:textColor="#000000"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        app:backgroundTint="#FFEB3B"
-        android:onClick="friendAdd" />
+<!--    <Button-->
+<!--        android:id="@+id/friend_add"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="16dp"-->
+<!--        android:layout_marginLeft="16dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="16dp"-->
+<!--        android:layout_marginRight="16dp"-->
+<!--        android:text="카카오톡 헬퍼 불러오기"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textStyle="bold"-->
+<!--        app:backgroundTint="#FFEB3B"-->
+<!--        android:onClick="friendFix"/>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/select_friend"
-        android:layout_marginTop="-60dp"
-        android:onClick="friendAdd">
-
+        android:layout_marginTop="20dp"
+        android:onClick="friendFix">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -111,6 +114,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textSize="24sp" />
+
 
         <androidx.cardview.widget.CardView
             android:layout_width="75dp"
@@ -136,10 +140,11 @@
             android:text="홍길동"
             android:textColor="@color/black"
             android:textSize="24sp" />
+
         <View
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_height="9dp"
+            android:layout_weight="1" />
 
     </LinearLayout>
     <TextView

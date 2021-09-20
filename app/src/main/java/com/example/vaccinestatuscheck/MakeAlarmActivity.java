@@ -1,12 +1,10 @@
 package com.example.vaccinestatuscheck;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -14,31 +12,29 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
-import java.util.Timer;
 
 public class MakeAlarmActivity extends AppCompatActivity {
 
-    Button cancleAlarm;
-    Button addAlarm, friendAdd;
+    TextView cancleAlarm, addAlarm;
+    Button friendAdd;
     LinearLayout selectFriend;
     TimePicker timePicker;
     TextView friendName;
     ImageView friendImage;
     String friendId;
-    String helperName, helperImageId;
+    String helperName, helperImageId, pushMessage;
+    EditText message;
     int hour, minute, alarmId;
     private AlarmManager alarmManager;
     Switch switchView;
@@ -47,13 +43,14 @@ public class MakeAlarmActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_alarm);
-        addAlarm = findViewById(R.id.addButton);
+        addAlarm = findViewById(R.id.fixButton);
         cancleAlarm = findViewById(R.id.cancleButton);
         timePicker = findViewById(R.id.timePicker);
         friendAdd = findViewById(R.id.friend_add);
         selectFriend = findViewById(R.id.select_friend);
         friendName = findViewById(R.id.friend_name);
         friendImage = findViewById(R.id.friend_image);
+        message = findViewById(R.id.pushMessage);
 
         selectFriend.setVisibility(View.INVISIBLE);
         addAlarm.setVisibility(View.INVISIBLE);
@@ -111,16 +108,19 @@ public class MakeAlarmActivity extends AppCompatActivity {
         //adapter view 생성 시간 데이터 정보 전달
         Intent intent = new Intent();
         Random random = new Random();
-        int alarmId = random.nextInt(100);
-
+//        int alarmId = random.nextInt(100);
         hour = timePicker.getCurrentHour();
         minute = timePicker.getCurrentMinute();
-
-        intent.putExtra("시간", String.valueOf(hour));
-        intent.putExtra("분", String.valueOf(minute));
+        pushMessage = String.valueOf(message.getText());
+        int alarmId = hour*60 + minute;
+        Log.d("메세지", String.valueOf(message.getText()));
+        intent.putExtra("시간", hour);
+        intent.putExtra("분", minute);
         intent.putExtra("알람", alarmId);
         intent.putExtra("헬퍼이름", helperName);
         intent.putExtra("헬퍼사진", helperImageId);
+        intent.putExtra("메세지", pushMessage);
+        intent.putExtra("헬퍼id", friendId);
         setResult(101, intent);
         Log.d("time", hour + " : " + minute);
 
@@ -128,10 +128,11 @@ public class MakeAlarmActivity extends AppCompatActivity {
 
         Log.d("ID:", String.valueOf(alarmId));
         alarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
-        Intent alarm = new Intent(this, alarmReceiverKakao.class);
+        Intent alarm = new Intent(this, alarmReceiver.class);
         alarm.putExtra("state", "alarm on");
         alarm.putExtra("alarmId", alarmId);
         alarm.putExtra("friendId", friendId);
+        alarm.putExtra("message", pushMessage);
         PendingIntent operation = PendingIntent.getBroadcast(this, alarmId, alarm, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar calendar = Calendar.getInstance();
@@ -149,6 +150,7 @@ public class MakeAlarmActivity extends AppCompatActivity {
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), operation);
         }
+
         finish();
     }
 

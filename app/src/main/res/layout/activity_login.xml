@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0B1955"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -11,12 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:gravity="bottom"
         android:layout_weight="1"
+        android:gravity="bottom"
+        android:text="COVID-19"
+        android:textColor="#F1D900"
         android:textSize="60sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:text="COVID-19" />
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -24,17 +25,16 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:text="SOS"
+        android:textColor="#F1D900"
         android:textSize="60sp"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/kakao_login_medium_wide"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        />
+        android:src="@drawable/kakao_login_medium_wide" />
 
 </LinearLayout>

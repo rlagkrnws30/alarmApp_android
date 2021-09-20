@@ -17,7 +17,7 @@ class friendAdapter(private val context: Activity, private val arrayList: ArrayL
 
         var inflater: LayoutInflater = LayoutInflater.from(context)
         val view: View = inflater.inflate(R.layout.friend_item, null);
-        var cnt: Int = 0;
+//        var cnt: Int = 0;
         val imageView: ImageView = view.findViewById(R.id.friend_image);
         val friendName: TextView = view.findViewById(R.id.friend_name);
 //        val checkFriend: CheckBox = view.findViewById(R.id.friend_check);

@@ -41,9 +41,10 @@ class FriendAddActitvity : AppCompatActivity() {
                 binding.listview.adapter = friendAdapter(this, friendArrayList);
                 binding.listview.onItemClickListener = AdapterView.OnItemClickListener { parent, view, position, id ->
                     var selectItem = parent.getItemAtPosition(position) as friendData
-                    Toast.makeText(this, selectItem.uuid, Toast.LENGTH_SHORT).show()
+//                    Toast.makeText(this, selectItem.uuid, Toast.LENGTH_SHORT).show()
                     var intent1 = Intent();
                     setResult(103, intent1)
+                    setResult(106, intent1)
 //                    var intent = Intent(this, MakeAlarmActivity::class.java)
                     intent1.putExtra("uuid",selectItem.uuid);
                     intent1.putExtra("friendName", selectItem.name);

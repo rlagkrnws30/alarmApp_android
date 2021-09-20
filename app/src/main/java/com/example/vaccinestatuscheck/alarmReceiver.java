@@ -1,25 +1,17 @@
 package com.example.vaccinestatuscheck;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.app.TaskStackBuilder;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.os.Build;
 import android.util.Log;
-
-import androidx.core.app.NotificationCompat;
 
 public class alarmReceiver extends BroadcastReceiver {
 
     Context context;
     String channelId = "alarm_check";
     String friendId;
+    String message;
     int alarmId;
     MediaPlayer mediaPlayer;
 
@@ -30,8 +22,9 @@ public class alarmReceiver extends BroadcastReceiver {
         // alarm intent로부터 전달받은 alarmId
         alarmId = intent.getExtras().getInt("alarmId");
         friendId = intent.getExtras().getString("friendId");
-        String get_yout_string = intent.getExtras().getString("state");
-        Log.d("string : ", get_yout_string);
+        message = intent.getExtras().getString("message");
+//        String get_yout_string = intent.getExtras().getString("state");
+//        Log.d("string : ", get_yout_string);
 
 //        Intent alarmFunction = new Intent(context, AlarmFunctionActivity.class);
 //
@@ -61,9 +54,11 @@ public class alarmReceiver extends BroadcastReceiver {
 
         // RingtonePlayinService로 extra string값 보내기
         Intent service = new Intent(context, alarmService.class);
-        service.putExtra("state", get_yout_string);
+//        service.putExtra("state", get_yout_string);
         service.putExtra("alarmId", alarmId);
         service.putExtra("friendId", friendId);
+        service.putExtra("message", message);
+        Log.d("receiver", message);
         service.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         // start the ringtone service
 
