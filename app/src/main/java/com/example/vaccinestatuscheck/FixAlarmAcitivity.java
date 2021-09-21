@@ -36,7 +36,7 @@ public class FixAlarmAcitivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fix_alarm_acitivity);
+        setContentView(R.layout.activity_fix_alarm);
         image = findViewById(R.id.friend_image);
         name = findViewById(R.id.friend_name);
         timePicker = findViewById(R.id.timePicker);

@@ -54,8 +54,9 @@ class alarmService : Service() {
                     .setSmallIcon(R.mipmap.ic_launcher)
                     .build()
             startForeground(alarmId, notification)
-            mediaPlayer = MediaPlayer.create(this, R.raw.ouu)
+            mediaPlayer = MediaPlayer.create(this, R.raw.alarm)
             mediaPlayer!!.start()
+            mediaPlayer!!.isLooping = true;
             //30초 타이머 작동
             startTimer()
             //30초 초과 시 카톡 발송 acitivty 호출 후 본 서비스 정료

@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 /*카카오톡이 설치되어있는지 먼저 확인*/
                 if(UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
                     /*카카오톡 설치시, 카카오톡으로 로그인*/
@@ -59,7 +60,6 @@ public class LoginActivity extends AppCompatActivity {
                 }
             }
         });
-
         updateKakaoLoginUi();
     }
 

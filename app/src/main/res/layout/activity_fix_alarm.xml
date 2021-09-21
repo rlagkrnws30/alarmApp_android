@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#0B1955"
     android:soundEffectsEnabled="false"
     tools:context=".FixAlarmAcitivity"
     android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -33,8 +34,8 @@
             android:layout_marginTop="16dp"
             android:onClick="cancleAlarm"
             android:text="취소"
-            android:textColor="#3F51B5"
-            android:textSize="20sp"/>
+            android:textColor="#F0CF5E"
+            android:textSize="20sp" />
 
         <View
             android:layout_width="0dp"
@@ -45,12 +46,13 @@
             android:id="@+id/fixButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:text="수정"
+            android:layout_marginRight="16dp"
+            android:backgroundTint="@color/com_kakao_cancel_button_background"
             android:onClick="fixAlarm"
-            android:textColor="#3F51B5"
-            android:textSize="20sp"/>
+            android:text="수정"
+            android:textColor="#F0CF5E"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <TextView
@@ -62,18 +64,32 @@
         android:layout_marginTop="24dp"
         android:text="상태 체크 시간"
         android:textAllCaps="false"
-        android:textColor="#0C0C0C"
+        android:textColor="#F0CF5E"
         android:textSize="24sp"
         android:textStyle="bold" />
 
-    <TimePicker
-        android:id="@+id/timePicker"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="28dp"
-        android:foregroundGravity="center"
-        android:timePickerMode="spinner" />
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/layout"
+        android:gravity="center">
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:foregroundGravity="center"
+            android:numbersBackgroundColor="@android:color/white"
+            android:numbersInnerTextColor="@android:color/white"
+            android:numbersSelectorColor="#0B1955"
+            android:numbersTextColor="#0B1955"
+            android:timePickerMode="spinner" />
+    </LinearLayout>
 
 <!--    <LinearLayout-->
 <!--        android:layout_width="match_parent"-->
@@ -96,32 +112,36 @@
 <!--        android:textStyle="bold"-->
 <!--        app:backgroundTint="#FFEB3B"-->
 <!--        android:onClick="friendFix"/>-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="헬퍼 선정"
+        android:textColor="#F0CF5E"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/select_friend"
-        android:layout_marginTop="20dp"
-        android:onClick="friendFix">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="24dp"
-            android:text="헬퍼 :"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="24sp" />
-
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="friendFix"
+        android:orientation="horizontal"
+        android:background="@drawable/layout">
 
         <androidx.cardview.widget.CardView
+            android:id="@+id/friend_card"
             android:layout_width="75dp"
             android:layout_height="75dp"
+            android:layout_gravity="center"
             android:layout_marginRight="20dp"
-            app:cardCornerRadius="75dp"
-            android:id="@+id/friend_card">
+            android:layout_marginLeft="16dp"
+            app:cardCornerRadius="75dp">
 
             <ImageView
                 android:id="@+id/friend_image"
@@ -138,34 +158,43 @@
             android:layout_height="match_parent"
             android:gravity="center"
             android:text="홍길동"
-            android:textColor="@color/black"
-            android:textSize="24sp" />
+            android:textColor="#0B1955"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <View
             android:layout_width="0dp"
-            android:layout_height="9dp"
+            android:layout_height="0dp"
             android:layout_weight="1" />
 
     </LinearLayout>
+
     <TextView
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="헬퍼 메세지"
-        android:textColor="@color/black"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="20dp"
+        android:text="헬퍼 메세지"
+        android:textColor="#F0CF5E"
         android:textSize="24sp"
-        android:textStyle="bold"
-        />
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/pushMessage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textMultiLine"
-        android:scrollHorizontally="false"
         android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
-        />
+        android:background="@drawable/edittext"
+        android:ems="12"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:scrollHorizontally="false"
+        android:textColor="#0B1955"
+        android:textCursorDrawable="@null"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textAllCaps="false"/>
 </LinearLayout>

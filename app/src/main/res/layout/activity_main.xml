@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="CREADLE"
+            android:text="VACCINE"
             android:textColor="#0B1955"
             android:textSize="24sp"
             android:textStyle="bold" />

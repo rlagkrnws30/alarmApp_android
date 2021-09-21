@@ -172,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
                     dayNight = "AM";
                 }
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight,hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId);
                     arrayList.add(alarmView);
                 } else {
-                    alarmView alarmView = new alarmView(dayNight,hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId);
                     arrayList.add(alarmView);
                 }
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -229,7 +229,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight,hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId);
                     arrayList.set(position, alarmView);
                     Collections.sort(arrayList, new Comparator<alarmView>() {
                         @Override
@@ -245,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
                     mainAdapter.notifyDataSetChanged();
 
                 } else {
-                    alarmView alarmView = new alarmView(dayNight,":" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + minute, helperName, newAlarmId, helperImageId, message, friendId);
                     arrayList.set(position, alarmView);
                     Collections.sort(arrayList, new Comparator<alarmView>() {
                         @Override

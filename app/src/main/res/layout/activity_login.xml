@@ -14,8 +14,8 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:text="COVID-19"
-        android:textColor="#F1D900"
+        android:text="VACCINE"
+        android:textColor="#EBC74C"
         android:textSize="60sp"
         android:textStyle="bold" />
 
@@ -25,7 +25,7 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:text="SOS"
-        android:textColor="#F1D900"
+        android:textColor="#EBC74C"
         android:textSize="60sp"
         android:textStyle="bold" />
 
@@ -35,6 +35,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="40dp"
-        android:src="@drawable/kakao_login_medium_wide" />
+        android:src="@drawable/login" />
 
 </LinearLayout>

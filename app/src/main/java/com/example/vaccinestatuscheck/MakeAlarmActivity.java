@@ -27,8 +27,8 @@ import java.util.Random;
 public class MakeAlarmActivity extends AppCompatActivity {
 
     TextView cancleAlarm, addAlarm;
-    Button friendAdd;
-    LinearLayout selectFriend;
+    TextView friendAdd;
+    LinearLayout selectFriend, friendAdd2;
     TimePicker timePicker;
     TextView friendName;
     ImageView friendImage;
@@ -47,11 +47,11 @@ public class MakeAlarmActivity extends AppCompatActivity {
         cancleAlarm = findViewById(R.id.cancleButton);
         timePicker = findViewById(R.id.timePicker);
         friendAdd = findViewById(R.id.friend_add);
+        friendAdd2 = findViewById(R.id.friend_add2);
         selectFriend = findViewById(R.id.select_friend);
         friendName = findViewById(R.id.friend_name);
         friendImage = findViewById(R.id.friend_image);
         message = findViewById(R.id.pushMessage);
-
         selectFriend.setVisibility(View.INVISIBLE);
         addAlarm.setVisibility(View.INVISIBLE);
 //        Intent intent = getIntent();
@@ -165,7 +165,7 @@ public class MakeAlarmActivity extends AppCompatActivity {
 
         if (requestCode == 103) {
             if (data != null) {
-                friendAdd.setVisibility(View.INVISIBLE);
+                friendAdd2.setVisibility(View.INVISIBLE);
                 selectFriend.setVisibility(View.VISIBLE);
                 friendId = data.getStringExtra("uuid");
                 helperName = data.getStringExtra("friendName");
