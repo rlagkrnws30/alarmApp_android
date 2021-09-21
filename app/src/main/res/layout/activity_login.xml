@@ -29,12 +29,33 @@
         android:textSize="60sp"
         android:textStyle="bold" />
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/loginButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginBottom="40dp"
-        android:src="@drawable/login" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/helper_layout"
+        android:gravity="center"
+        android:elevation="10dp"
+        android:layout_marginBottom="32dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/picker" />
+
+        <TextView
+            android:id="@+id/friend_add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="-40dp"
+            android:paddingLeft="30dp"
+            android:text="카카오 로그인 하기 "
+            android:textColor="#0B1955"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

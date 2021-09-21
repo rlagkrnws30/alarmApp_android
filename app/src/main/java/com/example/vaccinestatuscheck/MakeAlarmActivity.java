@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -28,7 +30,7 @@ public class MakeAlarmActivity extends AppCompatActivity {
 
     TextView cancleAlarm, addAlarm;
     TextView friendAdd;
-    LinearLayout selectFriend, friendAdd2;
+    LinearLayout selectFriend, friendAdd2, makeAlarm;
     TimePicker timePicker;
     TextView friendName;
     ImageView friendImage;
@@ -52,6 +54,7 @@ public class MakeAlarmActivity extends AppCompatActivity {
         friendName = findViewById(R.id.friend_name);
         friendImage = findViewById(R.id.friend_image);
         message = findViewById(R.id.pushMessage);
+        makeAlarm = findViewById(R.id.makeAlarm);
         selectFriend.setVisibility(View.INVISIBLE);
         addAlarm.setVisibility(View.INVISIBLE);
 //        Intent intent = getIntent();
@@ -98,6 +101,12 @@ public class MakeAlarmActivity extends AppCompatActivity {
 //            }
 //        });
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(message.getWindowToken(), 0);
+        return true;
+    }
 
     public void cancleAlarm(View view) {
         setResult(RESULT_CANCELED);

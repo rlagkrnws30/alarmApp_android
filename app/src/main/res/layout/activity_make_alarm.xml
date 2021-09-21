@@ -7,7 +7,8 @@
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:soundEffectsEnabled="false"
-    tools:context=".MakeAlarmActivity">
+    tools:context=".MakeAlarmActivity"
+    android:id="@+id/makeAlarm">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -34,7 +35,7 @@
             android:onClick="cancleAlarm"
             android:text="취소"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="16sp" />
 
         <View
             android:layout_width="0dp"
@@ -51,7 +52,7 @@
             android:onClick="addAlarm"
             android:text="저장"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="16sp"/>
     </LinearLayout>
 
     <TextView
@@ -60,11 +61,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="sans-serif"
         android:text="상태 체크 시간"
         android:textAllCaps="false"
         android:textColor="#0B1955"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -99,7 +101,7 @@
         android:gravity="center"
         android:text="헬퍼 선정"
         android:textColor="#0B1955"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -132,15 +134,6 @@
             android:textColor="#0B1955"
             android:textSize="16sp"
             android:textStyle="bold" />
-        <!--        <Button-->
-        <!--            android:id="@+id/friend_add"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginLeft="40dp"-->
-        <!--            android:layout_gravity="center"-->
-        <!--            android:gravity="center"-->
-        <!--            android:background="@drawable/helper"-->
-        <!--            android:onClick="friendAdd"/>-->
     </LinearLayout>
 
     <LinearLayout
@@ -180,7 +173,7 @@
             android:gravity="center"
             android:text="홍길동"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <View
@@ -198,7 +191,7 @@
         android:layout_marginTop="24dp"
         android:text="헬퍼 메세지"
         android:textColor="#0B1955"
-        android:textSize="24sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <EditText

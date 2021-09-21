@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private alarmViewAdaptor mainAdapter;
     public static Context context;
     String strUserPicture, usename;
-
+    Boolean start;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
             int updateCredit = preConfig.readCreditPref(this);
             point.setText(String.valueOf(updateCredit));
         }
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(100);
+
+        Animation anim2 = new AlphaAnimation(1.0f, 0.0f);
+        anim2.setDuration(100);
 
         int credit = intent.getIntExtra("credit", 0);
         Log.d("msg", String.valueOf(credit));
@@ -56,7 +63,9 @@ public class MainActivity extends AppCompatActivity {
             int newCredit = Integer.parseInt((String) point.getText()) + credit;
             Log.d("newcredit", String.valueOf(newCredit));
             preConfig.writeCreditPref(this, newCredit);
+            point.startAnimation(anim);
             point.setText(String.valueOf(newCredit));
+            point.setAnimation(anim2);
         }
 
         if (usename == null | strUserPicture == null) {

@@ -48,7 +48,7 @@ class alarmService : Service() {
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
             val notification = NotificationCompat.Builder(this, channelId)
-                    .setContentTitle("알람시작")
+                    .setContentTitle("메디컬 체크 시작!")
                     .setContentIntent(pendingIntent)
                     .setContentText("알람음이 재생됩니다.")
                     .setSmallIcon(R.mipmap.ic_launcher)

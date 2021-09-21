@@ -10,7 +10,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -52,6 +54,13 @@ public class FixAlarmAcitivity extends AppCompatActivity {
         name.setText(friendName);
         message.setText(pushMessage);
         Glide.with(this).load(friendImage).into(image);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        imm.hideSoftInputFromWindow(message.getWindowToken(), 0);
+        return true;
     }
 
     public void cancleAlarm(View view) {

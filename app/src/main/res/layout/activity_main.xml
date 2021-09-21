@@ -93,7 +93,7 @@
             android:text="0"
             android:textColor="@color/black"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/textView5"
@@ -124,7 +124,8 @@
         android:text="헬퍼를 선정해주세요!"
         android:textColor="@color/black"
         android:textSize="24sp"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:layout_marginTop="12dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler"

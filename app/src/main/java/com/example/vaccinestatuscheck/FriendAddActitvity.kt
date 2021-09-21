@@ -1,10 +1,12 @@
 package com.example.vaccinestatuscheck
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import android.widget.Toast
 import com.example.vaccinestatuscheck.databinding.ActivityFriendAddActitvityBinding
@@ -57,5 +59,10 @@ class FriendAddActitvity : AppCompatActivity() {
             }
         }
 
+    }
+
+    fun cancle(view: View) {
+        setResult(Activity.RESULT_CANCELED)
+        finish()
     }
 }
