@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B1955"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:soundEffectsEnabled="false"
@@ -34,7 +33,7 @@
             android:layout_marginTop="16dp"
             android:onClick="cancleAlarm"
             android:text="취소"
-            android:textColor="#F0CF5E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
 
         <View
@@ -51,7 +50,7 @@
             android:backgroundTint="@color/com_kakao_cancel_button_background"
             android:onClick="addAlarm"
             android:text="저장"
-            android:textColor="#F0CF5E"
+            android:textColor="@color/black"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -64,7 +63,7 @@
         android:layout_marginTop="24dp"
         android:text="상태 체크 시간"
         android:textAllCaps="false"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -96,10 +95,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="헬퍼 선정"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -111,9 +110,10 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/layout"
+        android:background="@drawable/helper_layout"
         android:gravity="center"
-        android:onClick="friendAdd">
+        android:onClick="friendAdd"
+        android:elevation="10dp">
 
         <ImageView
             android:layout_width="20dp"
@@ -152,7 +152,8 @@
         android:layout_marginRight="16dp"
         android:background="@drawable/layout"
         android:onClick="friendAdd"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:elevation="10dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/friend_card"
@@ -194,9 +195,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="헬퍼 메세지"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -208,6 +209,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/edittext"
+        android:elevation="10dp"
         android:ems="12"
         android:inputType="textMultiLine"
         android:padding="10dp"

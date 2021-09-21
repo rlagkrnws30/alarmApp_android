@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#0B1955"
     android:soundEffectsEnabled="false"
     tools:context=".FixAlarmAcitivity"
     android:scrollbarAlwaysDrawVerticalTrack="true">
@@ -34,7 +33,7 @@
             android:layout_marginTop="16dp"
             android:onClick="cancleAlarm"
             android:text="취소"
-            android:textColor="#F0CF5E"
+            android:textColor="#0B1955"
             android:textSize="20sp" />
 
         <View
@@ -51,7 +50,7 @@
             android:backgroundTint="@color/com_kakao_cancel_button_background"
             android:onClick="fixAlarm"
             android:text="수정"
-            android:textColor="#F0CF5E"
+            android:textColor="#0B1955"
             android:textSize="20sp" />
     </LinearLayout>
 
@@ -64,7 +63,7 @@
         android:layout_marginTop="24dp"
         android:text="상태 체크 시간"
         android:textAllCaps="false"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -76,7 +75,8 @@
         android:layout_marginTop="12dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/layout"
-        android:gravity="center">
+        android:gravity="center"
+        android:elevation="10dp">
 
         <TimePicker
             android:id="@+id/timePicker"
@@ -116,10 +116,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:gravity="center"
         android:text="헬퍼 선정"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold"/>
 
@@ -132,7 +132,8 @@
         android:layout_marginRight="16dp"
         android:onClick="friendFix"
         android:orientation="horizontal"
-        android:background="@drawable/layout">
+        android:background="@drawable/layout"
+        android:elevation="10dp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/friend_card"
@@ -174,9 +175,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="24dp"
         android:text="헬퍼 메세지"
-        android:textColor="#F0CF5E"
+        android:textColor="#0B1955"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -196,5 +197,6 @@
         android:textCursorDrawable="@null"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textAllCaps="false"/>
+        android:textAllCaps="false"
+        android:elevation="10dp"/>
 </LinearLayout>
