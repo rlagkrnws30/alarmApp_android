@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0B1955"
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
@@ -14,9 +13,20 @@
         android:layout_gravity="center"
         android:layout_weight="1"
         android:gravity="bottom"
-        android:text="VACCINE"
-        android:textColor="#EBC74C"
-        android:textSize="60sp"
+        android:text="누구"
+        android:textColor="#0B1955"
+        android:textSize="88sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-20dp"
+        android:layout_marginBottom="20dp"
+        android:text="없소"
+        android:textColor="#0B1955"
+        android:textSize="88sp"
         android:textStyle="bold" />
 
     <TextView
@@ -24,9 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        android:text="SOS"
-        android:textColor="#EBC74C"
-        android:textSize="60sp"
+        android:text="VACCINE SOS"
+        android:textColor="#0B1955"
+        android:textSize="24sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -35,10 +45,10 @@
         android:layout_height="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/helper_layout"
-        android:gravity="center"
-        android:elevation="10dp"
-        android:layout_marginBottom="32dp">
+        android:elevation="5dp"
+        android:gravity="center">
 
         <ImageView
             android:layout_width="20dp"

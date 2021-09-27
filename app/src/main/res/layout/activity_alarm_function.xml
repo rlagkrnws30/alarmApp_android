@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#0B1955"
     tools:context=".AlarmFunctionActivity"
-    android:background="#0B1955">
+    android:orientation="vertical"
+    >
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="30dp"
         android:src="@drawable/alarm"
-        app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginBottom="12dp"
+        android:layout_gravity="center"/>
 
     <TextView
         android:id="@+id/textView3"
@@ -25,38 +24,41 @@
         android:layout_height="wrap_content"
         android:text="메디컬 체크!"
         android:textColor="#F0CF5E"
-        android:textSize="48sp"
+        android:textSize="40sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/cancel_btn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.269" />
+        android:layout_gravity="center"/>
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+    </View>
 
     <com.ebanx.swipebtn.SwipeButton
+        android:layout_gravity="center"
         android:id="@+id/cancel_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="48dp"
+        android:textAlignment="center"
         app:button_background="@drawable/shape_button"
         app:button_bottom_padding="20dp"
         app:button_image_disabled="@drawable/donate"
         app:button_image_enabled="@drawable/donation"
-        app:button_image_height="100dp"
-        app:button_image_width="100dp"
+        app:button_image_height="80dp"
+        app:button_image_width="80dp"
         app:button_left_padding="20dp"
         app:button_right_padding="20dp"
         app:button_top_padding="20dp"
         app:has_activate_state="true"
         app:initial_state="disabled"
-        app:inner_text="  I'm Okay !"
+        app:inner_text="체크 완료!"
         app:inner_text_background="@drawable/shape_rounded"
         app:inner_text_bottom_padding="18dp"
         app:inner_text_color="#F0CF5E"
-        app:inner_text_size="25sp"
-        app:inner_text_top_padding="18dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:inner_text_left_padding="24dp"
+        app:inner_text_size="24sp"
+        app:inner_text_top_padding="18dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

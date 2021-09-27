@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.vaccinestatuscheck">
+    package="com.creadle.vaccinesos">
 
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".kakaoApplication"
+        android:name="com.creadle.vaccinesos.kakaoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -20,18 +20,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".FixAlarmAcitivity"></activity>
-        <activity android:name=".FriendAddActitvity" />
+        <activity android:name="com.creadle.vaccinesos.FixAlarmAcitivity"></activity>
+        <activity android:name="com.creadle.vaccinesos.FriendAddActitvity" />
         <activity
-            android:name=".AlarmFunctionActivity"
+            android:name="com.creadle.vaccinesos.AlarmFunctionActivity"
             android:excludeFromRecents="true"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName="com.creadle.vaccinesos.MainActivity"
             android:showForAllUsers="true"
             android:showOnLockScreen="true"
             android:turnScreenOn="true" />
-        <activity android:name=".MakeAlarmActivity" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LoginActivity">
+        <activity android:name="com.creadle.vaccinesos.MakeAlarmActivity" />
+        <activity android:name="com.creadle.vaccinesos.MainActivity" />
+        <activity android:name="com.creadle.vaccinesos.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,11 +53,11 @@
         </activity>
 
         <service
-            android:name=".alarmService"
+            android:name="com.creadle.vaccinesos.alarmService"
             android:enabled="true" />
 
         <receiver
-            android:name=".alarmReceiver"
+            android:name="com.creadle.vaccinesos.alarmReceiver"
             android:enabled="true"
             android:exported="true" />
     </application>

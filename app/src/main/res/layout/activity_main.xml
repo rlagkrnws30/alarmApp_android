@@ -29,10 +29,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="VACCINE"
+            android:text="누구없소"
             android:textColor="#0B1955"
             android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
         <View
             android:layout_width="0dp"
             android:layout_height="0dp"

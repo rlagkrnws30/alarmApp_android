@@ -11,13 +11,33 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="8dp">
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="16dp"
+        >
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:src="@drawable/arrow"
             android:onClick="cancle"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:text="헬퍼 선택"
+            android:textColor="#0B1955"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginRight="24dp"/>
     </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="응급 상황 시, SOS 카톡 수신자"
+        android:textColor="#0B1955"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:gravity="center"/>
 
     <ListView
         android:id="@+id/listview"
