@@ -50,7 +50,6 @@ public class alarmViewAdaptor extends RecyclerView.Adapter<alarmViewAdaptor.View
         View itemView = inflater.inflate(R.layout.alarm_view, parent, false);
         return new ViewHolder(itemView);
     }
-
     @Override
     public void onBindViewHolder(@NonNull alarmViewAdaptor.ViewHolder holder, int position) {
         alarmView item = items.get(position);
