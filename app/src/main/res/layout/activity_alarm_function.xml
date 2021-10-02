@@ -8,25 +8,29 @@
     tools:context=".AlarmFunctionActivity"
     android:orientation="vertical"
     >
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+    <com.google.android.ads.nativetemplates.TemplateView
+        android:id="@+id/my_template"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/alarm"
-        android:layout_marginBottom="12dp"
-        android:layout_gravity="center"/>
+        app:gnt_template_type="@layout/gnt_medium_template_view"/>
 
     <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
+        android:id="@+id/alarmText"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="메디컬 체크!"
+        android:text="메디컬 체크"
+        android:layout_marginTop="20dp"
         android:textColor="#F0CF5E"
-        android:textSize="40sp"
+        android:layout_gravity="center"
+        android:gravity="center"
         android:textStyle="bold"
-        android:layout_gravity="center"/>
+        android:textSize="40sp"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"/>
+
     <View
         android:layout_width="0dp"
         android:layout_height="0dp"

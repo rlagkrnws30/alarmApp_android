@@ -12,6 +12,7 @@ import android.view.View;
 import com.kakao.sdk.auth.model.OAuthToken;
 import com.kakao.sdk.user.UserApiClient;
 import com.kakao.sdk.user.model.User;
+import com.kakao.util.helper.Utility;
 
 import kotlin.Unit;
 import kotlin.jvm.functions.Function2;
@@ -29,7 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        String keyHash = Utility.getKeyHash(this);
+        Log.d("hash", keyHash);
         loginButton = findViewById(R.id.loginButton);
 
         /* 카카오톡 설치여부 확인 callback 함수*/
@@ -54,10 +56,18 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Log.d("login", "클릭");
+                if (UserApiClient.getInstance().isKakaoTalkLoginAvailable(LoginActivity.this)) {
+                    /*카카오톡 설치시, 카카오톡으로 로그인*/
+                    UserApiClient.getInstance().loginWithKakaoTalk(LoginActivity.this, callback);
+                    /*카카오톡 미설치시, 카카오웹으로 로그인.*/
+                } else {
+                    UserApiClient.getInstance().loginWithKakaoAccount(LoginActivity.this, callback);
+                }
+
 //                팝업창 호출, 이제 그만 보기 클릭 시 클릭 날짜 prefernece로 저장해서 이후 날짜와 비교를 통해 팝업을 보여주지 않는다.
                 loginAcitve = preConfig.readLoginPref(getApplicationContext());
-                login_noti.setMessage("친구 목록 및 메세지 푸쉬에 동의해야 원할한 서비스 이용이 가능합니다.");
-                login_noti.setPositiveButton("확인", new DialogInterface.OnClickListener(){
+                login_noti.setMessage("카카오톡 친구 목록 및 메세지 전송 선택 항목에 동의해야 원할한 서비스 이용이 가능합니다.");
+                login_noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         /*카카오톡이 설치되어있는지 먼저 확인*/

@@ -11,10 +11,10 @@ android {
         applicationId "com.creadle.vaccinesos"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
+        versionCode 10
+        versionName "1.7.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
 
     buildTypes {
@@ -44,6 +44,9 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'com.google.android.gms:play-services-ads:20.3.0'
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation project(':nativetemplates')
 
     /*카카오 SDK 모듈 설정하기*/
     implementation "com.kakao.sdk:usermgmt:1.27.0"

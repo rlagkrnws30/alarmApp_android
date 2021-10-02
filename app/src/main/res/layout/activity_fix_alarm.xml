@@ -66,8 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="함께 체크해줄 헬퍼를 선택해주세요!"
+            android:text="헬퍼 선택"
             android:textColor="#0B1955"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -176,7 +175,7 @@
             android:onClick="cancleAlarm"
             android:text="취소"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <View
@@ -192,7 +191,7 @@
             android:onClick="fixAlarm"
             android:text="수정"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <View

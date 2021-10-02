@@ -4,45 +4,74 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FriendAddActitvity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".FriendAddActitvity">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginBottom="8dp"
         android:layout_marginRight="16dp"
-        >
+        android:layout_marginTop="12dp"
+        android:layout_weight="1"
+        android:gravity="center">
+
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/arrow"
-            android:onClick="cancle"/>
+            android:onClick="cancle"
+            android:src="@drawable/arrow" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
+            android:layout_marginRight="24dp"
+            android:gravity="center"
             android:text="헬퍼 선택"
             android:textColor="#0B1955"
             android:textSize="20dp"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:layout_marginRight="24dp"/>
+            android:textStyle="bold" />
     </LinearLayout>
+
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:gravity="center"
         android:text="응급 상황 시, SOS 카톡 수신자"
         android:textColor="#0B1955"
         android:textSize="16dp"
-        android:layout_gravity="center"
-        android:gravity="center"/>
+        android:layout_weight="1"/>
 
     <ListView
         android:id="@+id/listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:choiceMode="singleChoice"
-        tools:listitem="@layout/friend_item"/>
+        tools:listitem="@layout/friend_item"
+        android:layout_weight="8"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:textSize="16sp"
+        android:padding="16dp"
+        android:textColor="#0B1955"
+        android:text="상대방도 어플 설치가 되어 있어야 헬퍼로 선택 가능합니다!" />
+
+    <Button
+        android:id="@+id/share"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="앱 공유하기"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/share_layout"
+        android:textColor="@color/white"
+        android:onClick="shareApp"/>
 </LinearLayout>

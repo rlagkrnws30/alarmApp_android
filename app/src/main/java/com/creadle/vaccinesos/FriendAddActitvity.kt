@@ -64,4 +64,16 @@ class FriendAddActitvity : AppCompatActivity() {
         setResult(Activity.RESULT_CANCELED)
         finish()
     }
+
+    fun shareApp(view: View) {
+        var share : Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            addCategory(Intent.CATEGORY_DEFAULT)
+            putExtra(Intent.EXTRA_TEXT, "https://play.google.com/apps/internaltest/4700355144589210319")
+            putExtra(Intent.EXTRA_TITLE, "누구없소")
+            type = "text/plain"
+        }
+        var shareIntent = Intent.createChooser(share, null)
+        startActivity(shareIntent)
+    }
 }

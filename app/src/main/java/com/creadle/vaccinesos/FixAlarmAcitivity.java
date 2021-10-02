@@ -81,7 +81,7 @@ public class FixAlarmAcitivity extends AppCompatActivity {
         minute = timePicker.getCurrentMinute();
         int newAlarmId = hour*60 + minute;
         Intent alarm = new Intent(getApplicationContext(), alarmReceiver.class);
-
+        pushMessage = String.valueOf(message.getText());
         alarm.putExtra("alarmId", alarmId);
         alarm.putExtra("friendId", friendId);
         alarm.putExtra("message", pushMessage);

@@ -20,6 +20,19 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.android.ads.nativetemplates.NativeTemplateStyle;
+import com.google.android.ads.nativetemplates.TemplateView;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdLoader;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.formats.UnifiedNativeAd;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.google.android.gms.ads.nativead.NativeAd;
+import com.google.android.gms.ads.nativead.NativeAdOptions;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -37,6 +50,8 @@ public class MainActivity extends AppCompatActivity {
     public static Context context;
     String strUserPicture, usename;
     Boolean start;
+    private AdView mAdView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         usename = intent.getStringExtra("name");
         strUserPicture = intent.getStringExtra("profileImg");
-        Log.d("msg", 햐"service start");
+        Log.d("msg", "service start");
 
         TextView point = findViewById(R.id.credit);
         TextView point_p = findViewById(R.id.textView5);
@@ -67,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("newcredit", String.valueOf(newCredit));
             preConfig.writeCreditPref(this, newCredit);
             point.setText(String.valueOf(newCredit));
-            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.alpha);
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
             point.startAnimation(animation);
             point_p.startAnimation(animation);
         }
@@ -112,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
             Log.d("list0", String.valueOf(arrayList.size()));
             intro.setVisibility(View.VISIBLE);
             intro2.setVisibility(View.VISIBLE);
-        } else if(arrayList.size() == 0){
+        } else if (arrayList.size() == 0) {
             intro.setVisibility(View.VISIBLE);
             intro2.setVisibility(View.VISIBLE);
-        }else {
+        } else {
             intro.setVisibility(View.INVISIBLE);
             intro2.setVisibility(View.INVISIBLE);
             Log.d("listx", String.valueOf(arrayList.size()));
@@ -164,7 +179,17 @@ public class MainActivity extends AppCompatActivity {
                 intro2.setVisibility(View.VISIBLE);
             }
         });
+
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
+        mAdView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -200,10 +225,10 @@ public class MainActivity extends AppCompatActivity {
                     dayNight = "AM";
                 }
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId);
                     arrayList.add(alarmView);
                 } else {
-                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId);
                     arrayList.add(alarmView);
                 }
                 for (int i = 0; i < arrayList.size(); i++) {
@@ -234,8 +259,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("newcredit", String.valueOf(newCredit));
                 point.setText(String.valueOf(newCredit));
             }
-        }
-        else if (requestCode == 105) {
+        } else if (requestCode == 105) {
             Log.d("msg", "105");
             if (data != null) {
                 int hour = data.getIntExtra("시간", 0);
@@ -257,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId);
                     arrayList.set(position, alarmView);
                     Collections.sort(arrayList, new Comparator<alarmView>() {
                         @Override
@@ -273,7 +297,7 @@ public class MainActivity extends AppCompatActivity {
                     mainAdapter.notifyDataSetChanged();
 
                 } else {
-                    alarmView alarmView = new alarmView(dayNight+" ",hour + ":" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, newAlarmId, helperImageId, message, friendId);
                     arrayList.set(position, alarmView);
                     Collections.sort(arrayList, new Comparator<alarmView>() {
                         @Override

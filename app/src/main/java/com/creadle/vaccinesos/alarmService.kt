@@ -23,12 +23,13 @@ class alarmService : Service() {
     private var tempTime: Long = 0
     var friendId = ""
     var message = ""
+    var alarmId = 0
     override fun onBind(intent: Intent): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        val alarmId = intent.extras!!.getInt("alarmId")
+        alarmId = intent.extras!!.getInt("alarmId")
         friendId = intent.extras!!.getString("friendId").toString()
         message = intent.extras!!.getString("message").toString()
 //        val getState = intent.extras!!.getString("state")
@@ -101,24 +102,9 @@ class alarmService : Service() {
                                         webUrl = "https://developers.kakao.com",
                                         mobileWebUrl = "https://developers.kakao.com"
                                 )
-                        ),
-                        buttons = listOf(
-                                Button(
-                                        "웹으로 보기",
-                                        Link(
-                                                webUrl = "https://developers.kakao.com",
-                                                mobileWebUrl = "https://developers.kakao.com"
-                                        )
-                                ),
-                                Button(
-                                        "앱으로 보기",
-                                        Link(
-                                                androidExecutionParams = mapOf("key1" to "value1", "key2" to "value2"),
-                                                iosExecutionParams = mapOf("key1" to "value1", "key2" to "value2")
-                                        )
-                                )
                         )
                 )
+
                 TalkApiClient.instance.sendDefaultMessage(receiverUuids = listOf(friendId) as List<String>, template = defaultFeed) { result, error ->
                     if (error != null) {
                         Log.e(ContentValues.TAG, "메시지 보내기 실패", error)
@@ -130,6 +116,50 @@ class alarmService : Service() {
                         }
                     }
                 }
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+                    val alarm = Intent(applicationContext, AlarmFunctionActivity::class.java)
+                    alarm.putExtra("alarmId", alarmId)
+                    val stackBuilder = TaskStackBuilder.create(applicationContext)
+                    stackBuilder.addNextIntentWithParentStack(alarm)
+                    val pendingIntent = stackBuilder.getPendingIntent(alarmId, PendingIntent.FLAG_UPDATE_CURRENT)
+                    val channel = NotificationChannel(channelId,
+                            "누구없소 헬프 카톡 서비스",
+                            NotificationManager.IMPORTANCE_HIGH)
+                    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+                    notificationManager.createNotificationChannel(channel)
+                    val notification = NotificationCompat.Builder(applicationContext, channelId)
+                            .setContentTitle("메디컬 체크 알람 1분 경과")
+                            .setContentIntent(pendingIntent)
+                            .setContentText("1분 경과로 인해 헬프 카톡이 전송되었습니다.")
+                            .setSmallIcon(R.drawable.notip)
+                            .build()
+                    startForeground(alarmId, notification)
+                }
+                startTimer2()
+            }
+        }
+        timer.start()
+    }
+
+    private fun startTimer2() {
+        timer = object : CountDownTimer(60 * 1000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                tempTime = millisUntilFinished
+//                updateTimer()
+                Log.d("service", message);
+                Log.d("msg", "타이머2 시작")
+            }
+
+            override fun onFinish() {
+                Log.d("msg", "타이머 끝")
+                Log.d("service", message);
+                /*카카오톡 메시지 발송하는 액티비티로 넘어가는 코드 추가*/
+//                var intent = Intent();
+//                var message = intent.getStringExtra("message").toString();
+//                Log.d("service", message);
+                mediaPlayer!!.stop();
+                stopSelf()
             }
         }
         timer.start()

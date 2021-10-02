@@ -66,8 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:text="함께 체크해줄 헬퍼를 선택해주세요!"
+            android:text="헬퍼 선택"
             android:textColor="#0B1955"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -98,7 +97,7 @@
                 android:layout_marginLeft="-20dp"
                 android:onClick="friendAdd"
                 android:padding="10dp"
-                android:text="카카오 헬퍼 불러오기"
+                android:text="카카오 친구 불러오기"
                 android:textColor="#0B1955"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -179,13 +178,13 @@
             android:background="@drawable/edittext"
             android:ems="12"
             android:inputType="textMultiLine"
-            android:padding="10dp"
+            android:padding="12dp"
             android:scrollHorizontally="false"
             android:text="백신 접종 후 SOS 요청!"
             android:textAllCaps="false"
             android:textColor="#0B1955"
             android:textCursorDrawable="@null"
-            android:textSize="16sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
     </LinearLayout>
 
@@ -207,7 +206,7 @@
             android:onClick="cancleAlarm"
             android:text="취소"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <View
@@ -224,7 +223,7 @@
             android:onClick="addAlarm"
             android:text="저장"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <View

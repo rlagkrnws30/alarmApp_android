@@ -167,39 +167,43 @@ public class MakeAlarmActivity extends AppCompatActivity {
     public void friendAdd(View view) {
 //        팝업창 표출 이제그만보기 버튼 키 값 저장, 버튼 클릭 되지 않을 시 앱을 사용하는 친구만 목록 표출된다는 팝업창 표출
         Log.d("친구 클릭", "클릭");
-        AlertDialog.Builder friend_noti = new AlertDialog.Builder(this);
-        friendNoti = preConfig.readFriendPref(getApplicationContext());
-        friend_noti.setMessage("누구없소와 함께하는 회원님들이 친구 목록에 표출됩니다.");
-        friend_noti.setIcon(R.drawable.icon2);
-        friend_noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                /*카카오톡이 설치되어있는지 먼저 확인*/
-                Log.d("login", "클릭2");
-                Intent intent = new Intent(getApplicationContext(), FriendAddActitvity.class);
-                startActivityForResult(intent, 103);
-            }
-        });
-        friend_noti.setNeutralButton("앞으로 보지 않기", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                friendNoti = 1;
-                preConfig.writeFriendPref(getApplicationContext(),friendNoti);
-                Intent intent = new Intent(getApplicationContext(), FriendAddActitvity.class);
-                startActivityForResult(intent, 103);
-            }
-        });
-        AlertDialog aFriend = friend_noti.create();
-        aFriend.setIcon(R.drawable.icon2);
-        aFriend.setTitle("이용 팁!");
-//        Intent intent = new Intent(this, FriendAddActitvity.class);
+//        AlertDialog.Builder friend_noti = new AlertDialog.Builder(this);
+//        friendNoti = preConfig.readFriendPref(getApplicationContext());
+//        friend_noti.setMessage("누구없소와 함께하는 회원님들이 친구 목록에 표출됩니다.");
+        Intent intent = new Intent(getApplicationContext(), FriendAddActitvity.class);
+        startActivityForResult(intent, 103);
+
+//        friend_noti.setIcon(R.drawable.icon2);
+//        friend_noti.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                /*카카오톡이 설치되어있는지 먼저 확인*/
+//                Log.d("login", "클릭2");
+//                Intent intent = new Intent(getApplicationContext(), FriendAddActitvity.class);
+//                startActivityForResult(intent, 103);
+//            }
+//        });
+//        friend_noti.setNeutralButton("앞으로 보지 않기", new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                friendNoti = 1;
+//                preConfig.writeFriendPref(getApplicationContext(),friendNoti);
+//                Intent intent = new Intent(getApplicationContext(), FriendAddActitvity.class);
+//                startActivityForResult(intent, 103);
+//            }
+//        });
+//
+//        AlertDialog aFriend = friend_noti.create();
+//        aFriend.setIcon(R.drawable.icon2);
+//        aFriend.setTitle("이용 팁!");
+//        Intent intent = new Intent(this, FriendAddaActitvity.class);
 //        startActivityForResult(intent, 103);
-        if (friendNoti != 1) {
-            aFriend.show();
-        } else {
-            Intent intent = new Intent(this, FriendAddActitvity.class);
-            startActivityForResult(intent, 103);
-        }
+//        if (friendNoti != 1) {
+//            aFriend.show();
+//        } else {
+//            Intent intent = new Intent(this, FriendAddActitvity.class);
+//            startActivityForResult(intent, 103);
+//        }
     }
 
     @Override
