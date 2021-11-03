@@ -1,1 +1,2 @@
-# vaccineStatusCheck
+# 누구없소
+## 친구와 함꼐하는 알람 리워드 앱
