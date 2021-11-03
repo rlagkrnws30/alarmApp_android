@@ -39,7 +39,8 @@ public class AlarmFunctionActivity extends AppCompatActivity {
         swipeButton = (SwipeButton) findViewById(R.id.cancel_btn);
         //alarmId 가져오기
         Intent intent = getIntent();
-//        int alarmId = intent.getExtras().getInt("alarmId");
+        int alarmId = intent.getIntExtra("alarmId", 0);
+        Log.d("alarmFunction", String.valueOf(alarmId));
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O_MR1) {
             setShowWhenLocked(true);
@@ -84,7 +85,13 @@ public class AlarmFunctionActivity extends AppCompatActivity {
 //                alarmManager.cancel(alarmCancle);
                 stopService(intent1);
                 Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+                intent2.setAction(Intent.ACTION_MAIN);
+                intent2.addCategory(Intent.CATEGORY_LAUNCHER);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent2.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent2.putExtra("credit", 1);
+                //switch status false를 위한 alarmId 전송
+                intent2.putExtra("alarmId", alarmId);
                 startActivityForResult(intent2, 102);
                 MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.money);
                 mediaPlayer.start();

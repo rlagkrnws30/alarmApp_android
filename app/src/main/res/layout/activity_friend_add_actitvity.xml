@@ -12,15 +12,18 @@
         android:layout_height="0dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="20dp"
         android:layout_weight="1"
         android:gravity="center">
 
-        <ImageView
+        <Button
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:padding="24dp"
+            android:id="@+id/cancleButton"
             android:onClick="cancle"
-            android:src="@drawable/arrow" />
+            android:background="@drawable/arrow_cancel"
+            />
 
         <TextView
             android:layout_width="match_parent"
@@ -37,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="응급 상황 시, SOS 카톡 수신자"
+        android:text="알람 미 확인 시, 헬프 카톡 수신자"
         android:textColor="#0B1955"
         android:textSize="16dp"
         android:layout_weight="1"/>
@@ -63,15 +66,15 @@
         android:id="@+id/share"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginRight="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="앱 공유하기"
-        android:textSize="20dp"
-        android:textStyle="bold"
         android:layout_gravity="center"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="20dp"
+        android:layout_weight="1"
         android:background="@drawable/share_layout"
+        android:onClick="shareApp"
+        android:text="앱 공유하기"
         android:textColor="@color/white"
-        android:onClick="shareApp"/>
+        android:textSize="16dp"
+        android:textStyle="bold" />
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.creadle.vaccinesos;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -8,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +18,9 @@ import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -45,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     Button loginButton;
     String shared = "file";
     Switch aSwitch;
-    private ArrayList<alarmView> arrayList;
+    public ArrayList<alarmView> arrayList;
     private alarmViewAdaptor mainAdapter;
     public static Context context;
     String strUserPicture, usename;
@@ -64,28 +69,22 @@ public class MainActivity extends AppCompatActivity {
 
         TextView point = findViewById(R.id.credit);
         TextView point_p = findViewById(R.id.textView5);
+        aSwitch = findViewById(R.id.alarmSwitch);
+//        Log.d("switch", String.valueOf(aSwitch));
+
         if (point.getText() != "0") {
             int updateCredit = preConfig.readCreditPref(this);
             point.setText(String.valueOf(updateCredit));
         }
         Animation anim = new AlphaAnimation(0.0f, 1.0f);
         anim.setDuration(100);
-
         Animation anim2 = new AlphaAnimation(1.0f, 0.0f);
         anim2.setDuration(100);
 
         int credit = intent.getIntExtra("credit", 0);
+        int alarmId = intent.getIntExtra("alarmId", 0);
+
         Log.d("msg", String.valueOf(credit));
-        if (credit == 1) {
-            Log.d("msg2", String.valueOf(credit));
-            int newCredit = Integer.parseInt((String) point.getText()) + credit;
-            Log.d("newcredit", String.valueOf(newCredit));
-            preConfig.writeCreditPref(this, newCredit);
-            point.setText(String.valueOf(newCredit));
-            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
-            point.startAnimation(animation);
-            point_p.startAnimation(animation);
-        }
 
         AlertDialog.Builder credit_noti = new AlertDialog.Builder(this);
         point.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +114,8 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recycler);
         arrayList = preConfig.readListFromPref(this);
 //        for(int i=0; i<arrayList.size(); i++){
-//            Log.d("list", String.valueOf(arrayList.get(i).alarmTime));
+//            Log.d("list", String.valueOf(arrayList.get(i).switchBoolean));
+//            Log.d("list", String.valueOf(arrayList.get(i).alarmId));
 //        }
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(layoutManager);
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
         mainAdapter = new alarmViewAdaptor(arrayList);
         recyclerView.setAdapter(mainAdapter);
         addButton = findViewById(R.id.fixButton);
-
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,6 +148,25 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 101);
             }
         });
+
+        if (credit == 1) {
+            int newCredit = Integer.parseInt((String) point.getText()) + credit;
+            preConfig.writeCreditPref(this, newCredit);
+            point.setText(String.valueOf(newCredit));
+            Animation animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.alpha);
+            point.startAnimation(animation);
+            point_p.startAnimation(animation);
+
+            Log.d("switch check", "yes");
+            for (int i = 0; i < arrayList.size(); i++) {
+                if (alarmId == arrayList.get(i).alarmId) {
+                    arrayList.get(i).switchBoolean = false;
+                    break;
+                }
+            }
+            preConfig.writeListPref(this, arrayList);
+            mainAdapter.notifyDataSetChanged();
+        }
 
         //수정 기능
         mainAdapter.setOnItemClickListener(new alarmViewAdaptor.OnItemClickListenr() {
@@ -160,14 +178,17 @@ public class MainActivity extends AppCompatActivity {
                 String friendImage = mainAdapter.items.get(position).helperImageId;
                 String message = mainAdapter.items.get(position).message;
                 String friendId = mainAdapter.items.get(position).friendId;
-                Log.d("클릭", friendName);
-                Log.d("클릭 헬퍼id", friendId);
+                int hour = mainAdapter.items.get(position).hour;
+                int minute = mainAdapter.items.get(position).minute;
+                Log.d("클릭", String.valueOf(id));
                 intent1.putExtra("이름", friendName);
                 intent1.putExtra("사진", friendImage);
                 intent1.putExtra("알람", id);
                 intent1.putExtra("위치", position);
                 intent1.putExtra("메세지", message);
                 intent1.putExtra("헬퍼id", friendId);
+                intent1.putExtra("시간", hour);
+                intent1.putExtra("분", minute);
                 startActivityForResult(intent1, 105);
             }
         });
@@ -180,16 +201,31 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+        LinearLayout alarmLayout = findViewById(R.id.alarmView_layout);
+        mainAdapter.setOnItemClickListener(new alarmViewAdaptor.OnItemClickListenr3() {
             @Override
-            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            public void onItemClick(View v, int position) {
+                mainAdapter.items.get(position).aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        if(buttonView.isChecked()){
+                            Log.d("checkOnMain", String.valueOf(mainAdapter.items.get(position).alarmId));
+                        }
+                    }
+                });
             }
         });
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
 
+//        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+//            @Override
+//            public void onInitializationComplete(InitializationStatus initializationStatus) {
+//            }
+//        });
+//        mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+        Log.d("finish", "yes");
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -202,37 +238,38 @@ public class MainActivity extends AppCompatActivity {
                 if (arrayList == null) {
                     arrayList = new ArrayList<>();
                 }
-
                 if (arrayList.size() == 0) {
                     intro.setVisibility(View.INVISIBLE);
                     intro2.setVisibility(View.INVISIBLE);
                 }
-
-                Log.d("101 check", "right");
+                aSwitch = findViewById(R.id.alarmSwitch);
                 int hour = data.getIntExtra("시간", 0);
                 int minute = data.getIntExtra("분", 0);
                 String helperName = data.getStringExtra("헬퍼이름");
                 String helperImageId = data.getStringExtra("헬퍼사진");
                 String message = data.getStringExtra("메세지");
                 String friendId = data.getStringExtra("헬퍼id");
-                Log.d("헬퍼id", friendId);
+                Boolean switchChecked = data.getBooleanExtra("스위치", false);
+                Switch aSwitch = findViewById(R.id.alarmSwitch);
+                Log.d("add_alarm_switch", String.valueOf(switchChecked));
                 String dayNight = null;
                 int alarmId = data.getIntExtra("알람", 0);
                 if (hour > 12) {
-                    dayNight = "PM";
+                    dayNight = "오후";
                     hour = hour - 12;
                 } else {
-                    dayNight = "AM";
+                    dayNight = "오전";
                 }
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, alarmId, helperImageId, message, friendId, switchChecked, hour, minute);
                     arrayList.add(alarmView);
                 } else {
-                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, alarmId, helperImageId, message, friendId, switchChecked, hour, minute);
                     arrayList.add(alarmView);
                 }
                 for (int i = 0; i < arrayList.size(); i++) {
                     Log.d("list", String.valueOf(arrayList.get(i).alarmTime));
+                    Log.d("list", String.valueOf(arrayList.get(i).switchBoolean));
                 }
                 //정렬
                 Collections.sort(arrayList, new Comparator<alarmView>() {
@@ -245,70 +282,84 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+                for (int i = 0; i < arrayList.size(); i++) {
+                    Log.d("list_sorted", String.valueOf(arrayList.get(i).alarmTime));
+                    Log.d("list_sorted", String.valueOf(arrayList.get(i).switchBoolean));
+                }
                 preConfig.writeListPref(this, arrayList);
                 mainAdapter.notifyDataSetChanged();
             }
-
-        } else if (requestCode == 102) {
-            int credit = data.getIntExtra("credit", 0);
-            Log.d("msg2", String.valueOf(credit));
-            if (credit == 1) {
-                TextView point = findViewById(R.id.credit);
-                Log.d("point", String.valueOf(point));
-                int newCredit = Integer.parseInt((String) point.getText()) + credit;
-                Log.d("newcredit", String.valueOf(newCredit));
-                point.setText(String.valueOf(newCredit));
-            }
+//        } else if (requestCode == 102) {
+//            int credit = data.getIntExtra("credit", 0);
+//            int alarmId = data.getIntExtra("alarmId", 0);
+//            Log.d("msg2", String.valueOf(credit));
+//            if (credit == 1) {
+////                TextView point = findViewById(R.id.credit);
+////                Log.d("point", String.valueOf(point));
+////                int newCredit = Integer.parseInt((String) point.getText()) + credit;
+////                Log.d("newcredit", String.valueOf(newCredit));
+////                point.setText(String.valueOf(newCredit));
+//                Log.d("switch check", "yes");
+//                for (int i = 0; i < arrayList.size(); i++) {
+//                    Log.d("switch check", "yes1");
+//                    if (alarmId == arrayList.get(i).alarmId) {
+//                        Log.d("switch check", "yes2");
+//                        arrayList.get(i).switchBoolean = false;
+//                        break;
+//                    }
+//                }
+//                preConfig.writeListPref(this, arrayList);
+//                mainAdapter.notifyDataSetChanged();
+//            }
         } else if (requestCode == 105) {
-            Log.d("msg", "105");
             if (data != null) {
                 int hour = data.getIntExtra("시간", 0);
                 int minute = data.getIntExtra("분", 0);
                 int position = data.getIntExtra("위치", 0);
-                Log.d("position", String.valueOf(position));
                 String helperName = data.getStringExtra("헬퍼이름");
                 String helperImageId = data.getStringExtra("헬퍼사진");
                 String message = data.getStringExtra("메세지");
                 String friendId = data.getStringExtra("헬퍼id");
-                int newAlarmId = data.getIntExtra("알람", 0);
+                Boolean switchChecked = data.getBooleanExtra("스위치", false);
+                int newAlarmId = data.getIntExtra("뉴알람", 0);
                 String dayNight = null;
 
                 if (hour > 12) {
-                    dayNight = "PM";
+                    dayNight = "오후";
                     hour = hour - 12;
                 } else {
-                    dayNight = "AM";
+                    dayNight = "오전";
                 }
 
                 if (minute < 10) {
-                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + "0" + minute, helperName, newAlarmId, helperImageId, message, friendId, switchChecked, hour, minute);
                     arrayList.set(position, alarmView);
-                    Collections.sort(arrayList, new Comparator<alarmView>() {
-                        @Override
-                        public int compare(alarmView o1, alarmView o2) {
-                            if (o1.alarmId > o2.alarmId) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
-                        }
-                    });
+//                    Collections.sort(arrayList, new Comparator<alarmView>() {
+//                        @Override
+//                        public int compare(alarmView o1, alarmView o2) {
+//                            if (o1.alarmId > o2.alarmId) {
+//                                return 1;
+//                            } else {
+//                                return -1;
+//                            }
+//                        }
+//                    });
                     preConfig.writeListPref(this, arrayList);
                     mainAdapter.notifyDataSetChanged();
 
                 } else {
-                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, newAlarmId, helperImageId, message, friendId);
+                    alarmView alarmView = new alarmView(dayNight + " ", hour + ":" + minute, helperName, newAlarmId, helperImageId, message, friendId, switchChecked, hour, minute);
                     arrayList.set(position, alarmView);
-                    Collections.sort(arrayList, new Comparator<alarmView>() {
-                        @Override
-                        public int compare(alarmView o1, alarmView o2) {
-                            if (o1.alarmId > o2.alarmId) {
-                                return 1;
-                            } else {
-                                return -1;
-                            }
-                        }
-                    });
+//                    Collections.sort(arrayList, new Comparator<alarmView>() {
+//                        @Override
+//                        public int compare(alarmView o1, alarmView o2) {
+//                            if (o1.alarmId > o2.alarmId) {
+//                                return 1;
+//                            } else {
+//                                return -1;
+//                            }
+//                        }
+//                    });
                     preConfig.writeListPref(this, arrayList);
                     mainAdapter.notifyDataSetChanged();
                 }
@@ -319,7 +370,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Log.d("msg", "service stop");
+        Log.d("onStop", "service stop");
+        for(int i=0; i<arrayList.size(); i++){
+            Log.d("list", String.valueOf(arrayList.get(i).switchBoolean));
+        }
         preConfig.writeListPref(this, arrayList);
         preConfig.writeNamePref(this, usename);
         preConfig.writePicturePref(this, strUserPicture);
@@ -328,6 +382,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.d("onStart", "service start");
+        preConfig.readListFromPref(this);
+        for(int i=0; i<arrayList.size(); i++){
+            Log.d("list", String.valueOf(arrayList.get(i).switchBoolean));
+        }
     }
 
 }

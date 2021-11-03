@@ -52,9 +52,7 @@ class FriendAddActitvity : AppCompatActivity() {
                     intent1.putExtra("image", selectItem.ImageId);
                     finish();
                 }
-
                 Log.i(ContentValues.TAG, "카카오톡 친구 목록 가져오기 성공 \n${friends.elements?.joinToString("\n")}")
-
             }
         }
 
@@ -69,7 +67,7 @@ class FriendAddActitvity : AppCompatActivity() {
         var share : Intent = Intent().apply {
             action = Intent.ACTION_SEND
             addCategory(Intent.CATEGORY_DEFAULT)
-            putExtra(Intent.EXTRA_TEXT, "https://play.google.com/apps/internaltest/4700355144589210319")
+            putExtra(Intent.EXTRA_TEXT, "https://play.google.com/store/apps/details?id=com.creadle.vaccinesos")
             putExtra(Intent.EXTRA_TITLE, "누구없소")
             type = "text/plain"
         }

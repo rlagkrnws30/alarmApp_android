@@ -9,12 +9,39 @@
     android:scrollbarAlwaysDrawVerticalTrack="true"
     android:soundEffectsEnabled="false"
     tools:context=".MakeAlarmActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center">
+        <Button
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:padding="24dp"
+            android:id="@+id/cancleButton"
+            android:onClick="cancleAlarm"
+            android:background="@drawable/arrow_cancel"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="헬프 알람 설정하기"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#0B1955"
+            android:gravity="center"
+            android:layout_marginLeft="-24dp"
+            />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="3">
+        android:layout_weight="2.5">
 
         <TextView
             android:id="@+id/textView"
@@ -23,10 +50,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="20dp"
-            android:text="상태 체크 시간"
+            android:text="시간 설정"
             android:textAllCaps="false"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -58,17 +85,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2"
+        android:layout_weight="1.5"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="16dp"
             android:text="헬퍼 선택"
             android:textColor="#0B1955"
-            android:textSize="20sp"
+            android:textSize="16sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -77,7 +104,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="12dp"
             android:layout_marginRight="16dp"
             android:background="@drawable/helper_layout"
             android:elevation="10dp"
@@ -106,7 +133,7 @@
         <LinearLayout
             android:id="@+id/select_friend"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="72dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="-48dp"
             android:layout_marginRight="16dp"
@@ -117,8 +144,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/friend_card"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="20dp"
@@ -154,7 +181,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
+        android:layout_weight="1.2"
         android:orientation="vertical">
 
         <TextView
@@ -163,10 +190,10 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="헬프 메세지"
+            android:text="헬프 메세지 입력"
             android:textColor="#0B1955"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
         <EditText
             android:id="@+id/pushMessage"
@@ -180,7 +207,7 @@
             android:inputType="textMultiLine"
             android:padding="12dp"
             android:scrollHorizontally="false"
-            android:text="백신 접종 후 SOS 요청!"
+            android:text="못 일어 날것 같애...회사에 휴가 좀 내줘;;"
             android:textAllCaps="false"
             android:textColor="#0B1955"
             android:textCursorDrawable="@null"
@@ -191,44 +218,21 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.5">
+        android:layout_weight="0.5"
+        android:layout_marginRight="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="20dp">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/cancleButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:onClick="cancleAlarm"
-            android:text="취소"
-            android:textColor="#0B1955"
-            android:textSize="16sp"
-            android:textStyle="bold" />
-
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="2" />
-
-        <TextView
+        <Button
             android:id="@+id/fixButton"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="16dp"
-            android:backgroundTint="@color/com_kakao_cancel_button_background"
+            android:background="@drawable/layout2"
             android:onClick="addAlarm"
-            android:text="저장"
-            android:textColor="#0B1955"
+            android:text="알람 저장하기"
+            android:textColor="@color/white"
             android:textSize="16sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
     </LinearLayout>
 </LinearLayout>

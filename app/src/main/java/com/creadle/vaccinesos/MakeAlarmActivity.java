@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,7 +30,7 @@ import java.util.Random;
 
 public class MakeAlarmActivity extends AppCompatActivity {
 
-    TextView cancleAlarm, addAlarm;
+    Button cancleAlarm, addAlarm;
     TextView friendAdd;
     LinearLayout selectFriend, friendAdd2, makeAlarm;
     TimePicker timePicker;
@@ -40,8 +41,6 @@ public class MakeAlarmActivity extends AppCompatActivity {
     EditText message;
     int hour, minute, alarmId;
     private AlarmManager alarmManager;
-    Switch switchView;
-    int friendNoti;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,7 +122,7 @@ public class MakeAlarmActivity extends AppCompatActivity {
         minute = timePicker.getCurrentMinute();
         pushMessage = String.valueOf(message.getText());
         int alarmId = hour*60 + minute;
-        Log.d("메세지", String.valueOf(message.getText()));
+        boolean switchBoolean = true;
         intent.putExtra("시간", hour);
         intent.putExtra("분", minute);
         intent.putExtra("알람", alarmId);
@@ -131,12 +130,11 @@ public class MakeAlarmActivity extends AppCompatActivity {
         intent.putExtra("헬퍼사진", helperImageId);
         intent.putExtra("메세지", pushMessage);
         intent.putExtra("헬퍼id", friendId);
+        intent.putExtra("스위치", switchBoolean);
         setResult(101, intent);
-        Log.d("time", hour + " : " + minute);
 
         //알람 세팅
 
-        Log.d("ID:", String.valueOf(alarmId));
         alarmManager = (AlarmManager) getApplicationContext().getSystemService(Context.ALARM_SERVICE);
         Intent alarm = new Intent(this, alarmReceiver.class);
         alarm.putExtra("state", "alarm on");
@@ -146,10 +144,8 @@ public class MakeAlarmActivity extends AppCompatActivity {
         PendingIntent operation = PendingIntent.getBroadcast(this, alarmId, alarm, PendingIntent.FLAG_UPDATE_CURRENT);
 
         Calendar calendar = Calendar.getInstance();
-        Log.d("time", String.valueOf(calendar.getTime()));
         calendar.set(Calendar.HOUR_OF_DAY, hour);
         calendar.set(Calendar.MINUTE, minute);
-        Log.d("current hour", String.valueOf(Calendar.HOUR_OF_DAY));
 
         if ((Calendar.getInstance().after(calendar))) {
             calendar.add(Calendar.DATE, 1);
@@ -166,7 +162,6 @@ public class MakeAlarmActivity extends AppCompatActivity {
 
     public void friendAdd(View view) {
 //        팝업창 표출 이제그만보기 버튼 키 값 저장, 버튼 클릭 되지 않을 시 앱을 사용하는 친구만 목록 표출된다는 팝업창 표출
-        Log.d("친구 클릭", "클릭");
 //        AlertDialog.Builder friend_noti = new AlertDialog.Builder(this);
 //        friendNoti = preConfig.readFriendPref(getApplicationContext());
 //        friend_noti.setMessage("누구없소와 함께하는 회원님들이 친구 목록에 표출됩니다.");

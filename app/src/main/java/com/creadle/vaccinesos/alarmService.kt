@@ -38,7 +38,9 @@ class alarmService : Service() {
         //        Intent alarmFunction = new Intent(this, AlarmFunctionActivity.class);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val alarm = Intent(this, AlarmFunctionActivity::class.java)
+            alarm.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             alarm.putExtra("alarmId", alarmId)
+            startActivity(alarm);
             val stackBuilder = TaskStackBuilder.create(this)
             stackBuilder.addNextIntentWithParentStack(alarm)
             val pendingIntent = stackBuilder.getPendingIntent(alarmId, PendingIntent.FLAG_UPDATE_CURRENT)

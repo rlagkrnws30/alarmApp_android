@@ -10,11 +10,11 @@ public class alarmView {
     String helperName;
     String helperImageId;
     int alarmId;
-    Button removeButton;
-    Switch aSwitch;
+    Boolean switchBoolean;
     String message;
     String friendId;
-
+    int hour, minute;
+    Switch aSwitch;
     public String getHelperImageId() {
         return helperImageId;
     }
@@ -24,7 +24,7 @@ public class alarmView {
     }
 
     //생성자 추가
-    public alarmView(String dayNight, String alarmTime, String helperName, int alarmId, String imageId, String message, String friendId) {
+    public alarmView(String dayNight, String alarmTime, String helperName, int alarmId, String imageId, String message, String friendId, Boolean switchBoolean, int hour, int minute) {
         this.dayNight = dayNight;
         this.alarmTime = alarmTime;
         this.helperName = helperName;
@@ -32,6 +32,9 @@ public class alarmView {
         this.helperImageId = imageId;
         this.message = message;
         this.friendId = friendId;
+        this.switchBoolean = switchBoolean;
+        this.hour = hour;
+        this.minute = minute;
     }
 
     public String getAlarmTime() {

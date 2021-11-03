@@ -34,6 +34,7 @@ public class FixAlarmAcitivity extends AppCompatActivity {
     TimePicker timePicker;
     EditText message;
     int hour,minute;
+    Boolean switchBoolean;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +51,15 @@ public class FixAlarmAcitivity extends AppCompatActivity {
         friendImage = intent.getStringExtra("사진");
         pushMessage = intent.getStringExtra("메세지");
         friendId = intent.getStringExtra("헬퍼id");
-        Log.d("헬퍼id fix", friendId);
+        hour = intent.getIntExtra("시간", 0);
+        minute = intent.getIntExtra("분", 0);
+        Log.d("알람id fix", String.valueOf(alarmId));
         name.setText(friendName);
         message.setText(pushMessage);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            timePicker.setHour(hour);
+            timePicker.setMinute(minute);
+        }
         Glide.with(this).load(friendImage).into(image);
     }
 
@@ -80,9 +87,10 @@ public class FixAlarmAcitivity extends AppCompatActivity {
         hour = timePicker.getCurrentHour();
         minute = timePicker.getCurrentMinute();
         int newAlarmId = hour*60 + minute;
+        switchBoolean = true;
         Intent alarm = new Intent(getApplicationContext(), alarmReceiver.class);
         pushMessage = String.valueOf(message.getText());
-        alarm.putExtra("alarmId", alarmId);
+        alarm.putExtra("alarmId", newAlarmId);
         alarm.putExtra("friendId", friendId);
         alarm.putExtra("message", pushMessage);
         PendingIntent operation = PendingIntent.getBroadcast(this, newAlarmId, alarm, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -108,12 +116,13 @@ public class FixAlarmAcitivity extends AppCompatActivity {
         Intent fixAlarm = new Intent();
         fixAlarm.putExtra("시간", hour);
         fixAlarm.putExtra("분", minute);
-        fixAlarm.putExtra("알람", newAlarmId);
+        fixAlarm.putExtra("뉴알람", newAlarmId);
         fixAlarm.putExtra("헬퍼이름", friendName);
         fixAlarm.putExtra("헬퍼사진", friendImage);
         fixAlarm.putExtra("위치", positon);
         fixAlarm.putExtra("메세지", pushMessage);
         fixAlarm.putExtra("헬퍼id",friendId);
+        fixAlarm.putExtra("스위치", switchBoolean);
 
         setResult(105, fixAlarm);
         finish();
